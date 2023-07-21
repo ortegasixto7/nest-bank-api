@@ -10,11 +10,22 @@ export class AllExceptionFilter implements ExceptionFilter {
         const { httpAdapter } = this.httpAdapterHost;
         const context = host.switchToHttp()
         const httpStatus = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
-        const exceptionResponse = context.getResponse() as any
         let responseBody = { error: 'INTERNAL_SERVER_ERROR' }
-        if (httpStatus !== 500) {
-            const responseMessage = Object.keys(CustomError)[Object.values(CustomError).indexOf(Number(exceptionResponse.message[0]))]
-            responseBody.error = responseMessage
+        if (httpStatus === 400) {
+
+            let responseMessage = 'UNKNOWN_ERROR'
+            if (exception instanceof HttpException) {
+                const exceptionMessage = (exception.getResponse() as any).message
+                responseMessage = Object.keys(CustomError)[Object.values(CustomError).indexOf(Number(exceptionMessage[0]))]
+                responseBody.error = responseMessage
+            }
+        }
+        if (httpStatus === 404) {
+            let responseMessage = 'UNKNOWN_ERROR'
+            if (exception instanceof HttpException) {
+                responseMessage = Object.keys(CustomError)[Object.values(CustomError).indexOf(Number(exception.getResponse()))]
+                responseBody.error = responseMessage
+            }
         }
         httpAdapter.reply(context.getResponse(), responseBody, httpStatus);
     }

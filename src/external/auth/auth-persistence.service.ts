@@ -9,6 +9,10 @@ import * as bcrypt from "bcrypt";
 export class AuthPersistence implements IAuthPersistence {
     constructor(@InjectModel(Auth.name) private readonly database: Model<Auth>) { }
 
+    async getByUserNameOrNull(userName: string): Promise<Auth | null> {
+        return await this.database.findOne({ userName })
+    }
+
     async create(data: Auth): Promise<void> {
         data.password = await bcrypt.hash(data.password, 10);
         await this.database.create(data)
