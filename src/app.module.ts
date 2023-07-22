@@ -3,9 +3,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { UserModule } from './core/user/user.module';
 import { UserController } from './controllers/user.controller';
+import { AccountModule } from './core/account/account.module';
 
 @Module({
-    imports: [MongooseModule.forRoot(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`), UserModule],
+    imports: [MongooseModule.forRoot(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`), UserModule, AccountModule],
     controllers: [UserController],
     providers: [],
 })

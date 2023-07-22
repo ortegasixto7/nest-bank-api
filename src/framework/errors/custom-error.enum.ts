@@ -1,10 +1,11 @@
 export enum CustomError {
     // Required Errors
+    INVALID_CREDENTIALS,
     FIRST_NAME_IS_REQUIRED,
     LAST_NAME_IS_REQUIRED,
     USER_NAME_IS_REQUIRED,
     PASSWORD_IS_REQUIRED,
-    INVALID_CREDENTIALS,
+    CURRENCY_CODE_IS_REQUIRED,
 
     // Not Found Errors
     USER_NOT_FOUND

@@ -15,7 +15,7 @@ export class SignInService {
         if (!auth) throw new NotFoundException(CustomError.USER_NOT_FOUND)
 
         if (!await bcrypt.compare(request.password, auth.password)) throw new BadRequestException(CustomError.USER_NOT_FOUND)
-        const token = jsonwebtoken.sign({ userId: auth.id }, process.env.JWT_SECRET)
+        const token = jsonwebtoken.sign({ userId: auth.id }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
         return { token }
     }
