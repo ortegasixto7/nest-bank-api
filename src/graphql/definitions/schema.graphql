@@ -1,0 +1,16 @@
+
+type Query { 
+    hello: String
+}
+
+type Mutation {
+    userSignUp(request: UserSignUpRequest!): Boolean
+}
+
+
+input UserSignUpRequest {
+    firstName: String!
+    lastName: String!
+    userName: String!
+    password: String!
+}
