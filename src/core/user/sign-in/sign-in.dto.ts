@@ -1,11 +1,11 @@
 import { IsNotEmpty } from 'class-validator';
-import { CustomError } from "src/framework/errors/custom-error.enum";
+import { CustomException } from "src/framework/errors/custom-exception.enum";
 
 export class SignInDto {
 
-    @IsNotEmpty({ message: CustomError.USER_NAME_IS_REQUIRED.toString() })
+    @IsNotEmpty({ message: CustomException.USER_NAME_IS_REQUIRED })
     userName: string
 
-    @IsNotEmpty({ message: CustomError.PASSWORD_IS_REQUIRED.toString() })
+    @IsNotEmpty({ message: CustomException.PASSWORD_IS_REQUIRED })
     password: string
 }
