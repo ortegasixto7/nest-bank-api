@@ -1,9 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
-import { CustomError } from "src/framework/errors/custom-error.enum";
+import { CustomException } from "src/framework/errors/custom-exception.enum";
 
 export class CreateDto {
 
-    @IsNotEmpty({ message: CustomError.CURRENCY_CODE_IS_REQUIRED.toString() })
+    @IsNotEmpty({ message: CustomException.CURRENCY_CODE_IS_REQUIRED })
     currencyCode: string
 
     userId: string
