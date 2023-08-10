@@ -1,3 +1,4 @@
+import * as bcrypt from "bcrypt";
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { SignUpDto } from "./sign-up.dto";
 import { User } from "../domain/user.schema";
@@ -18,7 +19,7 @@ export class SignUpService {
         if (userExists) throw new BadRequestException(CustomException.UNAVAILABLE_USER_NAME)
 
         const auth = new Auth()
-        auth.password = request.password
+        auth.password = await bcrypt.hash(request.password, 10)
         auth.userName = request.userName
         auth.roles = [AuthRole.USER]
 
