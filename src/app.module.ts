@@ -9,7 +9,7 @@ import { UserController } from './controllers/user.controller';
 import { AccountModule } from './core/account/account.module';
 import { CurrencyModule } from "./core/currency/currency.module";
 import { CurrencyController } from "./controllers/currency.controller";
-import { UserResolver } from "./graphql/resolvers/user.resolver";
+import { UserResolver } from "./graphql/user/user.resolver";
 import { GraphQLError, GraphQLFormattedError } from "graphql";
 
 @Module({

@@ -13,6 +13,7 @@ export class UserResolver {
 
     @Mutation("userSignUp")
     async signUp(@Args('request') request: SignUpDto): Promise<boolean> {
+        console.log('REQUEST', JSON.stringify(request))
         await this.signUpService.execute(request)
         return true
     }
