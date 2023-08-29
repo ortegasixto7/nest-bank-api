@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nest-bank
+    container_name: nest-backend-backend
+    ports:
+      - '8004:8004'
+    env_file: .env
